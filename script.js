@@ -22,11 +22,18 @@ const displayMusic = musics => {
         <div class="col-md-9">
             <h3 class="lyrics-name">${music.title}</h3>
             <p class="author lead">Album by <span>${music.artist.name}</span></p>
+            <audio controls>
+                <source src="${music.preview}" type="audio/ogg">
+            </audio>
         </div>
         <div class="col-md-3 text-md-right text-center">
-            <button class="btn btn-success">Get Lyrics</button>
+            <button onclick="getlyrics('${music.artist.name}', '${music.title}')" class="btn btn-success">Get Lyrics</button>
         </div>
         `
         musicContainer.appendChild(musicdiv);
     });
+}
+
+const getlyrics = (artist, title) => {
+    console.log(artist, title);
 }
