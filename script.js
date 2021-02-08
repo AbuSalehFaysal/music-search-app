@@ -13,6 +13,7 @@ const searchMusic = () => {
 const displayMusic = musics => {
     // console.log(musics);\
     const musicContainer = document.getElementById("musicContainer");
+    musicContainer.innerHTML = "";
     musics.forEach(music => {
         const musicdiv = document.createElement("div");
         // li.innerText = music.title;
@@ -35,5 +36,16 @@ const displayMusic = musics => {
 }
 
 const getlyrics = (artist, title) => {
-    console.log(artist, title);
+    const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
+    // console.log(url);
+    fetch(url)
+    .then(res => res.json())
+    .then (data => {
+        displayLyrics(data.lyrics);
+    })
+}
+
+const displayLyrics = lyrics => {
+    const lyricsDiv = document.getElementById("musicLyrics");
+    lyricsDiv.innerText = lyrics;
 }
